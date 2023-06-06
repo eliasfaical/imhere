@@ -48,5 +48,11 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 40,
     flexDirection: 'row',
+  },
+
+  listEmptyText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 16,
   }
 });
