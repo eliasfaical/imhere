@@ -4,8 +4,8 @@ import { Home } from './src/screens/Home';
 export default function App() {
   return (
     <>
+      <StatusBar style='auto' backgroundColor='#fff' translucent />
       <Home />
-      <StatusBar style="auto" backgroundColor='#fff' translucent />
     </>
   );
 }
