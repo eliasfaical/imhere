@@ -8,20 +8,22 @@ export function Home() {
   const [participants, setParticipants] = useState<string[]>([]);
   const [participantName, setParticipantName] = useState('');
 
-  function handleParticipantAdd(){
+  // add
+  function handleParticipantAdd() {
     if (participants.includes(participantName)) {
       return Alert.alert('Participante existe!', 'Já existe um participante na lista com este nome.');
     }
 
-    setParticipants(prevState => [...participants, participantName]);
+    setParticipants(prevState => [...prevState, participantName]);
     setParticipantName('');
   }
 
+  // remove
   function handleParticipantRemove(name: string) {
     Alert.alert('Remover', `Remover o participante ${name}`, [
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Deletado')
+        onPress: () => setParticipants(prevState => prevState.filter(participant => participant !== name))
       },
       {
         text: 'Não',
@@ -51,18 +53,18 @@ export function Home() {
 
       <FlatList 
         data={participants}
-        keyExtractor={item => item}
+        keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Participant 
             key={item} 
             name={item} 
-            onRemove={() => handleParticipantRemove("Elias")} 
+            onRemove={() => handleParticipantRemove(item)}
           />
         )}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => (
           <Text style={styles.listEmptyText}>
-            Ninguém chegou aqui ainda! Adicione participantes a sua lista.
+            Ninguém chegou no evento ainda? Adicione participantes a sua lista de presença.
           </Text>
         )}
       />
